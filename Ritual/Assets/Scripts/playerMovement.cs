@@ -40,10 +40,6 @@ public class playerMovement : MonoBehaviour {
             playerRB.velocity = new Vector3(0, 0, 0);
         }
 
-        //code to move the flashlight based on the camera
-        Quaternion lookRot = GameObject.FindGameObjectWithTag("Head").transform.localRotation;
-        //lookRot.y += 270;
-        //flashlight.transform.rotation = lookRot;
 
         //GameObject.FindGameObjectWithTag("Player").transform.localRotation
         flashlight.transform.position = MainCamera.transform.position;
