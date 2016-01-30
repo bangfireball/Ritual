@@ -6,13 +6,16 @@ public class playerMovement : MonoBehaviour {
     private float distanceFromGround = 1f;
     private bool isMoving = false;
     public float speed;
+    GameObject flashlight;
+    GameObject MainCamera;
 
     Vector3 forwarDir;
     Rigidbody playerRB;
 
 	// Use this for initialization
 	void Start () {
-        
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        flashlight = GameObject.FindGameObjectWithTag("Flashlight");
          playerRB = gameObject.GetComponent<Rigidbody>();
     }
 	
@@ -23,9 +26,11 @@ public class playerMovement : MonoBehaviour {
             isMoving = !isMoving;
         }
 
+        //code to move the player if the trigger is pulled 
+        //the player will move in the direction that the player is looking. 
         if(isMoving)
         {
-            forwarDir = GameObject.FindGameObjectWithTag("MainCamera").transform.forward;
+            forwarDir = MainCamera.transform.forward;
             forwarDir.y = 0;
             forwarDir.Normalize();
             playerRB.velocity = forwarDir * speed;
@@ -34,5 +39,14 @@ public class playerMovement : MonoBehaviour {
         {
             playerRB.velocity = new Vector3(0, 0, 0);
         }
+
+        //code to move the flashlight based on the camera
+        Quaternion lookRot = GameObject.FindGameObjectWithTag("Head").transform.localRotation;
+        //lookRot.y += 270;
+        //flashlight.transform.rotation = lookRot;
+
+        //GameObject.FindGameObjectWithTag("Player").transform.localRotation
+        flashlight.transform.position = MainCamera.transform.position;
+
 	}
 }
