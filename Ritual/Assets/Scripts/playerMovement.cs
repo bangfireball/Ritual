@@ -28,7 +28,7 @@ public class playerMovement : MonoBehaviour {
             forwarDir = GameObject.FindGameObjectWithTag("MainCamera").transform.forward;
             forwarDir.y = 0;
             forwarDir.Normalize();
-            playerRB.velocity = forwarDir * speed ;
+            playerRB.velocity = forwarDir * speed;
         }
         else
         {
